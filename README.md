@@ -1,1 +1,1 @@
-# ircphp
+# irc клиент на PHP
