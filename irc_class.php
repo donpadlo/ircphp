@@ -16,6 +16,7 @@ class Tirc{
     var $timeout=10;
     var $socket;
     var $nick="noname";
+    var $chanel="noname";
     
     /**
      *  Внутрення функция для логов
@@ -65,6 +66,11 @@ class Tirc{
         $this->putlog("результат: $ret");
         return $ret;
     }
+    function Join($chanel){
+        $this->chanel=$chanel;
+        $res=$this->send("JOIN :#$chanel\r\n");        
+        return $res;
+    }
     function is_ping($line){         
         if(strstr($line, 'PING')) {
             $this->putlog("получен PING");
@@ -80,6 +86,7 @@ class Tirc{
         if(strstr($line, 'PRIVMSG')) return true;         
     }        
     function SetNick($nick){
+        $this->nick=$nick;
         $ret=$this->send("NICK $nick\r\n");
         return $ret;
     }
