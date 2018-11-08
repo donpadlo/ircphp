@@ -95,10 +95,12 @@ class Tirc{
         return $ret;
     }
     function listChans(){
-        $this->send("LIST\r\n");         
+        $ret=$this->send("LIST\r\n");         
+        return $ret;
     }    
     function sendmessage($target, $msg){ 
-        $this->send("PRIVMSG $target :$msg\r\n");         
+        $ret=$this->send("PRIVMSG $target :$msg\r\n");         
+        return $ret;
     }    
     function loop($onMessage){
         while (!feof($this->socket)) {
